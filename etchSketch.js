@@ -1,6 +1,9 @@
 const container = document.querySelector("#container");
 const newGridBtn = document.querySelector("button");
 let divArr = [];
+let gridDimension = 16;
+
+
 function createGrid(x){
     for (let i = 0; i < x; i++){
         let subArr = []
@@ -15,8 +18,7 @@ function createGrid(x){
         divArr.push(subArr);
     }
 }
-let gridDimension = 16;
-createGrid(gridDimension);
+
 function colorGrid(x){
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -26,14 +28,19 @@ function colorGrid(x){
             const box = divArr[i][j];
             box.addEventListener("mouseenter", ()=>{box.style.backgroundColor = `rgb(${r}, ${g}, ${b})`})
             //box.addEventListener("mouseleave", () =>{box.style.backgroundColor = ""})
+        }
     }
 }
-}
+
+createGrid(gridDimension);
 colorGrid(gridDimension);
+
 newGridBtn.addEventListener("click", ()=>{
     container.innerHTML = "";
     divArr = [];
+    
     gridDimension = Number(prompt("Number of squares x, where grid is x by x: "));   
+    
     createGrid(gridDimension);
     colorGrid(gridDimension);
 
